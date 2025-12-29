@@ -1,43 +1,142 @@
-# Astro Starter Kit: Minimal
+# Portfolio Site（Astro）
 
-```sh
-npm create astro@latest -- --template minimal
-```
+本リポジトリは、面接提出用のポートフォリオサイトとして制作しています。
+完成物だけでなく、**要件定義・設計・Git運用フローを含めた開発プロセス**も評価対象として想定しています。
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-## 🚀 Project Structure
+## 1. 目的
 
-Inside of your Astro project, you'll see the following folders and files:
+- Webエンジニアとしての **設計力・実装力・運用視点** を示す
+- 「未経験だが、任せて育てられるエンジニア」であることを伝える
+- 数日で完成させ、面接時に **設計→実装→改善の流れ** を説明できる状態にする
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+---
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 2. 方針
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- 小さな機能単位でブランチを切り、PRベースで main にマージ
+- main ブランチは常に「デプロイ可能な状態」を保つ
 
-Any static assets, like images, can be placed in the `public/` directory.
+---
 
-## 🧞 Commands
+## 3. 技術スタック
 
-All commands are run from the root of the project, from a terminal:
+| 分類 | 技術 |
+|---|---|
+| フレームワーク | Astro |
+| コンテンツ管理 | Astro Content Collections |
+| UI | Astro（必要に応じてReactコンポーネントを併用） |
+| スタイリング | CSS（コンポーネント単位） |
+| TypeScript | Astro / Content定義・ロジック部分で使用 |
+| デプロイ | Vercel（Astroとの親和性・CI/CDの簡易性） |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
+## 4. ページ構成
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### トップページ `/`
+
+- TOP
+- ABOUT
+- SKILLS
+- PROJECTS
+- CONTACT
+
+### プロジェクト一覧 `/projects`
+
+- 全プロジェクトを一覧表示
+- mdファイル追加のみで自動更新
+
+---
+
+## 5. レイアウト / UX設計
+
+本サイトでは、以下のUX要件を満たすレイアウトを採用しています。
+
+- body はスクロールさせない
+- 画面中央に frame（枠）を配置
+- スクロールは frame 内のみ
+- frame 内は縦方向 scroll-snap
+  - 1セクション = 1画面
+- header は frame 内で固定
+- header のナビクリックで frame 内スクロール
+
+この構成により、
+- ページ遷移を最小限に抑えた没入感
+- セクション単位で内容を把握しやすいUI
+を実現しています。
+
+---
+
+## 6. Projects仕様
+
+### トップページの PROJECTS セクション
+
+- featured なプロジェクトを最大3件表示
+- セクション内のみ **横方向 scroll-snap**
+- 3件目の次に「More Projects」カードを表示
+- ボタンから `/projects` ページへ遷移
+
+### `/projects` ページ
+
+- 全プロジェクトを一覧表示
+- コンテンツは Content Collections から取得
+- md ファイル追加のみで更新可能
+
+---
+
+## 7. コンテンツ管理（Data設計）
+
+プロジェクト情報は **Astro Content Collections** を使用して管理します。
+md ファイルを追加するだけで、トップページ・一覧ページの表示に反映される設計とします。
+
+### ディレクトリ構成
+### frontmatter 項目
+
+各プロジェクトは md ファイルとして管理し、
+ファイル名をプロジェクトの識別子（URL）として使用します。
+
+| 項目 | 説明 |
+|---|---|
+| title | プロジェクト名 |
+| date | 作成日（一覧表示のソートに使用） |
+| summary | 概要（カード・一覧表示用） |
+| tags | 使用技術 |
+| thumbnail | サムネイル画像 |
+| featured | トップページ表示対象か |
+| draft | 下書きフラグ（非表示制御） |
+
+### 設計意図
+
+- 表示ロジックとコンテンツを分離し、追加・更新コストを下げる
+- トップページの自信作は `featured` フラグで管理する
+- 一覧ページは `date` を基準に自動ソートする
+- URL はファイル名を元に生成し、二重管理を避ける
+
+---
+
+## 8. 開発フロー
+
+- main：常に動作する状態を維持
+- feature/*：機能単位で作成
+- PRを作成し、セルフレビュー後にmainへマージ
+- 1コミット1目的を意識
+
+---
+
+## 9. 実装ステップ
+
+1. README（要件定義）の追加
+2. FrameLayout + 縦 scroll-snap の実装
+3. 各セクションの骨組み作成
+4. Content Collections の導入
+5. Projects（トップ / 一覧）実装
+6. スタイル調整・微調整
+
+---
+
+## 10. 補足
+
+本サイトは短期間での完成を目標としつつ、
+将来的な拡張（プロジェクト追加・表現改善）も想定した構成としています。
