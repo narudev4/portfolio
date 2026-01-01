@@ -1,0 +1,78 @@
+---
+import HeaderNav from "../components/HeaderNav.astro";
+
+const { title = "Naru Portfolio", description = "" } = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+  </head>
+
+  <body>
+    <div class="app">
+      <div class="frame">
+        <header class="frame__header">
+          <HeaderNav />
+        </header>
+        <div class="frame__scroll" id="frame-scroll">
+          <main class="frame__main">
+            <slot />
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  :global(html, body) {
+    height: 100%;
+    margin: 0;
+  }
+
+  /* body をスクロールさせない */
+  body {
+    overflow: hidden;
+  }
+
+  /* 画面中央に frame */
+  .app {
+    min-height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  .frame {
+    min-width: 100%;
+    min-height: 100%;
+    border: 2px solid #629d2e;
+    overflow: hidden;
+    background: #ffffff;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  /* header は frame 内固定（grid で固定） */
+  .frame__header {
+    border-bottom: 1px solid #e5e7eb;
+    background: #fff;
+    z-index: 1;
+  }
+
+  /* frame 内だけスクロール */
+  .frame__scroll {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .frame__main {
+    padding: 24px;
+    box-sizing: border-box;
+  }
+</style>
