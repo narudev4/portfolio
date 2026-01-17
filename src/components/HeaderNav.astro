@@ -1,0 +1,70 @@
+---
+const navItems = [
+  { href: "#top", label: "Top" },
+  { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
+];
+---
+
+<nav class="header-nav">
+  <ul class="nav-list">
+    {navItems.map((item) => (
+      <li>
+        <a href={item.href} class="nav-link" data-scroll-target={item.href}>
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .header-nav {
+    padding: 12px 24px;
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: #629d2e;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const frameScroll = document.getElementById("frame-scroll");
+    const navLinks = document.querySelectorAll(".nav-link[data-scroll-target]");
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("data-scroll-target");
+        if (!targetId || !frameScroll) return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          frameScroll.scrollTo({
+            top: targetElement.offsetTop - frameScroll.offsetTop,
+            behavior: "smooth",
+          });
+        }
+      });
+    });
+  });
+</script>
