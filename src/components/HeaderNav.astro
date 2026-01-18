@@ -1,4 +1,6 @@
 ---
+const isTopPage = Astro.url.pathname === "/";
+
 const navItems = [
   { href: "#top", label: "Top" },
   { href: "#about", label: "About" },
@@ -6,6 +8,14 @@ const navItems = [
   { href: "/projects", label: "Projects" },
   { href: "#contact", label: "Contact" },
 ];
+
+// トップページ以外では、アンカーリンクをトップページへの絶対パスに変換
+const getHref = (href: string) => {
+  if (href.startsWith("#") && !isTopPage) {
+    return "/" + href;
+  }
+  return href;
+};
 ---
 
 <nav class="header-nav">
@@ -13,9 +23,9 @@ const navItems = [
     {navItems.map((item) => (
       <li>
         <a
-          href={item.href}
+          href={getHref(item.href)}
           class="nav-link"
-          data-scroll-target={item.href.startsWith("#") ? item.href : undefined}
+          data-scroll-target={item.href.startsWith("#") && isTopPage ? item.href : undefined}
         >
           {item.label}
         </a>

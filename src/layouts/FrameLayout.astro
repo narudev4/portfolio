@@ -71,17 +71,15 @@ const { title = "Naru Portfolio", description = "" } = Astro.props;
     -webkit-overflow-scrolling: touch;
     min-height: 0;
     scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
   }
 
   .frame__main {
-    display: grid;
-    grid-auto-rows: 100%;
     box-sizing: border-box;
   }
 
   /* 各セクションを1画面サイズ + scroll-snap */
   .frame__main :global(section.snap) {
+    height: calc(100dvh - 24px * 2 - 2px * 2 - var(--header-height, 45px));
     scroll-snap-align: start;
     padding: 24px;
     box-sizing: border-box;
