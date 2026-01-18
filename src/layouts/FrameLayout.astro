@@ -65,14 +65,28 @@ const { title = "Naru Portfolio", description = "" } = Astro.props;
     z-index: 1;
   }
 
-  /* frame 内だけスクロール */
+  /* frame 内だけスクロール + scroll-snap */
   .frame__scroll {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-		min-height: 0;
+    min-height: 0;
+    scroll-snap-type: y mandatory;
   }
 
   .frame__main {
+    box-sizing: border-box;
+  }
+
+  /* 各セクションを1画面サイズ + scroll-snap */
+  .frame__main :global(section.snap) {
+    height: calc(100dvh - 24px * 2 - 2px * 2 - var(--header-height, 45px));
+    scroll-snap-align: start;
+    padding: 24px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  .frame__main :global(section:not(.snap)) {
     padding: 24px;
     box-sizing: border-box;
   }
