@@ -1,11 +1,102 @@
 ---
+import { getCollection } from "astro:content";
 import FrameLayout from "../../layouts/FrameLayout.astro";
+
+const projects = await getCollection("projects", ({ data }) => {
+  return data.draft !== true;
+});
+
+// 日付で降順ソート
+const sortedProjects = projects.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
 ---
 
 <FrameLayout title="Projects">
-  <main>
+  <main class="projects-page">
     <h1>Projects</h1>
-    <p>準備中（順次追加予定）</p>
-    <p><a href="/#top">Topへ戻る</a></p>
+    <ul class="project-list">
+      {sortedProjects.map((project) => (
+        <li class="project-item">
+          <a href={`/projects/${project.slug}`} class="project-link">
+            <h2>{project.data.title}</h2>
+            <p class="summary">{project.data.summary}</p>
+            <div class="tags">
+              {project.data.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="back-link"><a href="/#top">Topへ戻る</a></p>
   </main>
 </FrameLayout>
+
+<style>
+  .projects-page {
+    padding: 24px;
+  }
+
+  h1 {
+    margin-bottom: 24px;
+  }
+
+  .project-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .project-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .project-link {
+    display: block;
+    padding: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s;
+  }
+
+  .project-link:hover {
+    background-color: #f9fafb;
+  }
+
+  .project-link h2 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .summary {
+    margin: 0 0 12px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background-color: #e5e7eb;
+    color: #333;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .back-link {
+    margin-top: 24px;
+  }
+</style>
