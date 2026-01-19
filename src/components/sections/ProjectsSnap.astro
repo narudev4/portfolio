@@ -1,26 +1,27 @@
+---
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects", ({ data }) => {
+  return data.draft !== true && data.featured === true;
+});
+
+// 日付で降順ソート
+const featuredProjects = projects.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
 <section id="projects" class="snap">
   <h2>Projects</h2>
 
-  <article>
-    <h3>
-      <a href="/projects">Beyond Log</a>
-    </h3>
-    <p>
-      Shadowverse: Worlds Beyondでの対戦データを記録し、勝率を可視化するアプリ。
-      React / Next.js / Firebase を使用。
-    </p>
-  </article>
+  {featuredProjects.map((project) => (
+    <article>
+      <h3>
+        <a href={`/projects/${project.slug}`}>{project.data.title}</a>
+      </h3>
+      <p>{project.data.summary}</p>
+    </article>
+  ))}
 
-  <article>
-    <h3>
-      <a href="/projects">割り勘くん</a>
-    </h3>
-    <p>
-      LINEグループで割り勘計算を行うBot。
-      Node.js / LINE Messaging API を使用。
-    </p>
-  </article>
-
-  <p>※ 詳細は順次追加予定です。</p>
   <p><a href="/projects">プロジェクト一覧を見る</a></p>
 </section>
