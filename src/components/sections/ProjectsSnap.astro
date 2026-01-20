@@ -5,23 +5,161 @@ const projects = await getCollection("projects", ({ data }) => {
   return data.draft !== true && data.featured === true;
 });
 
-// 日付で降順ソート
 const featuredProjects = projects.sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 ---
 
 <section id="projects" class="snap">
-  <h2>Projects</h2>
+  <div class="content-container">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <p class="label">Projects</p>
+    </div>
+    <h2>制作物</h2>
 
-  {featuredProjects.map((project) => (
-    <article>
-      <h3>
-        <a href={`/projects/${project.slug}`}>{project.data.title}</a>
-      </h3>
-      <p>{project.data.summary}</p>
-    </article>
-  ))}
+    <div class="project-list">
+      {featuredProjects.map((project, index) => (
+        <article class="project-item">
+          <a href={`/projects/${project.slug}`} class="project-link">
+            <span class="project-number">{String(index + 1).padStart(2, '0')}</span>
+            <div class="project-content">
+              <h3>{project.data.title}</h3>
+              <p class="summary">{project.data.summary}</p>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
 
-  <p><a href="/projects">プロジェクト一覧を見る</a></p>
+    <p class="view-all">
+      <a href="/projects">すべてのプロジェクトを見る →</a>
+    </p>
+  </div>
 </section>
+
+<style>
+  section {
+    align-items: center;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .section-header {
+    position: relative;
+    margin-bottom: var(--space-md);
+  }
+
+  .section-number {
+    position: absolute;
+    top: -1rem;
+    right: -2.5rem;
+    font-family: var(--font-label);
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: var(--color-border);
+    letter-spacing: 0.1em;
+  }
+
+  .label {
+    font-family: var(--font-label);
+    font-size: 0.5625rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin-bottom: var(--space-lg);
+  }
+
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--space-lg);
+    width: 100%;
+  }
+
+  .project-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .project-item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .project-link {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+    text-decoration: none;
+    text-align: left;
+  }
+
+  .project-number {
+    font-family: var(--font-label);
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .project-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .project-link h3 {
+    font-family: var(--font-heading);
+    font-size: 1.375rem;
+    font-weight: 400;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text);
+    transition: color 0.2s ease;
+  }
+
+  .project-link:hover h3 {
+    color: var(--color-accent);
+  }
+
+  .summary {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .view-all a {
+    font-family: var(--font-label);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s ease;
+  }
+
+  .view-all a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 600px) {
+    .section-number {
+      right: -1.5rem;
+    }
+  }
+</style>
