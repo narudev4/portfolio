@@ -1,12 +1,86 @@
 <section id="about" class="snap">
-  <h2 class="policy">AIを使いこなし、再現性のある価値を届ける。</h2>
-	<p class="profile">
-		2000年4月20日生まれ。大阪生まれ大阪育ち、現在は東京都在住。
-		飲食・アパレル業務の経験を通して、価値を提供する喜びと効率化への関心からITの道に進みました。
-	</p>
-  <p class="intro">
-    Web制作・運用の現場で実務を経験する中で、
-    属人化やミスが起きやすい業務を仕組みで改善したいと考えるようになりました。
-    現在は、エンジニアとして業務を前に進めるための開発力を磨いています。
-  </p>
+  <div class="content-container">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <p class="label">About</p>
+    </div>
+    <h2 class="statement">AIを使いこなし、<br />再現性のある価値を届ける。</h2>
+    <div class="bio">
+      <p>
+        2000年生まれ。大阪出身、東京在住。
+      </p>
+      <p>
+        飲食・アパレル業務の経験を通して、価値を提供する喜びと効率化への関心からITの道へ。
+        Web制作・運用の現場で実務を経験する中で、属人化やミスが起きやすい業務を仕組みで改善したいと考えるようになりました。
+      </p>
+      <p>
+        現在は、エンジニアとして業務を前に進めるための開発力を磨いています。
+      </p>
+    </div>
+  </div>
 </section>
+
+<style>
+  section {
+    align-items: center;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .section-header {
+    position: relative;
+    margin-bottom: var(--space-md);
+  }
+
+  .section-number {
+    position: absolute;
+    top: -1rem;
+    right: -2.5rem;
+    font-family: var(--font-label);
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: var(--color-border);
+    letter-spacing: 0.1em;
+  }
+
+  .label {
+    font-family: var(--font-label);
+    font-size: 0.5625rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+
+  .statement {
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    line-height: 1.5;
+    margin-bottom: var(--space-lg);
+    max-width: 14em;
+  }
+
+  .bio {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 540px;
+  }
+
+  .bio p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  @media (max-width: 600px) {
+    .section-number {
+      right: -1.5rem;
+    }
+  }
+</style>

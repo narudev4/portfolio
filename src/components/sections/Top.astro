@@ -1,12 +1,155 @@
 <section id="top" class="snap">
-  <div class="inner">
-    <h1>NARU HOSOYA</h1>
-    <div class="cta">
-      <a class="btn primary" href="#projects">Projects</a>
+  <div class="content-container">
+    <div class="hero">
+      <span class="hero-number">01</span>
+      <p class="label">Portfolio</p>
+      <h1 class="name">
+        <span class="name-line">Naru</span>
+        <span class="name-line">Hosoya</span>
+      </h1>
+      <div class="role-wrapper">
+        <span class="role-line"></span>
+        <p class="role">Software Engineer</p>
+        <span class="role-line"></span>
+      </div>
     </div>
-    <a class="btn ghost" href="#about">↓ Scroll</a>
-    <div class="description">
-      <p>こんにちは、私は細谷成です。ソフトウェアエンジニアを目指しています。</p>
+
+    <div class="scroll-hint">
+      <span class="scroll-line"></span>
+      <span class="scroll-text">Scroll</span>
     </div>
   </div>
 </section>
+
+<style>
+  section {
+    align-items: center;
+  }
+
+  .content-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero-number {
+    position: absolute;
+    top: -2rem;
+    right: -3rem;
+    font-family: var(--font-label);
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: var(--color-border);
+    letter-spacing: 0.1em;
+  }
+
+  .label {
+    font-family: var(--font-label);
+    font-size: 0.5625rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-md);
+  }
+
+  h1.name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 0;
+    line-height: 0.85;
+  }
+
+  .name-line {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 15vw, 9rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    display: block;
+  }
+
+  .name-line:last-child {
+    color: var(--color-text);
+    opacity: 0.4;
+  }
+
+  .role-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .role-line {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .role {
+    font-family: var(--font-label);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .scroll-line {
+    display: block;
+    width: 1px;
+    height: 32px;
+    background: var(--color-border);
+  }
+
+  .scroll-text {
+    font-family: var(--font-label);
+    font-size: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 600px) {
+    .hero-number {
+      top: -1.5rem;
+      right: -1rem;
+    }
+
+    .role-line {
+      width: 24px;
+    }
+
+    .scroll-hint {
+      display: none;
+    }
+  }
+</style>
