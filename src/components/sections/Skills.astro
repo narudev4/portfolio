@@ -1,28 +1,131 @@
 <section id="skills" class="snap">
-	<h2>Skills</h2>
+  <div class="content-container">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <p class="label">Skills</p>
+    </div>
+    <h2>技術スタック</h2>
 
-	<h3>Frontend</h3>
-	<ul>
-		<li>TypeScript（実装経験あり／学習中）</li>
-		<li>JavaScript（実装経験あり／学習中）</li>
-		<li>React（実装経験あり／学習中）</li>
-		<li>Next.js（実装経験あり／学習中）</li>
-		<li>Astro（実装経験あり／学習中）</li>
-		<li>HTML / CSS（実務：HTMLメルマガ作成）</li>
-	</ul>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Frontend</h3>
+        <ul>
+          <li>TypeScript / JavaScript</li>
+          <li>React / Next.js</li>
+          <li>Astro</li>
+          <li>HTML / CSS</li>
+        </ul>
+      </div>
 
-	<h3>Backend / Infra</h3>
-	<ul>
-		<li>Node.js（実装経験あり／学習中）</li>
-		<li>Firebase Auth / Firestore（実装経験あり／学習中）</li>
-		<li>LINE Messaging API（実装経験あり／学習中）</li>
-	</ul>
+      <div class="skill-group">
+        <h3>Backend</h3>
+        <ul>
+          <li>Node.js</li>
+          <li>Firebase (Auth / Firestore)</li>
+          <li>LINE Messaging API</li>
+        </ul>
+      </div>
 
-	<h3>Tools</h3>
-	<ul>
-		<li>Git / GitHub（継続利用中）</li>
-		<li>Vercel（デプロイ経験あり／学習中）</li>
-	</ul>
+      <div class="skill-group">
+        <h3>Tools</h3>
+        <ul>
+          <li>Git / GitHub</li>
+          <li>Vercel</li>
+        </ul>
+      </div>
+    </div>
 
-	<p>※すべて実装経験に基づいて記載しています。学習中の技術も個人開発で使用しています。</p>
+    <p class="note">すべて個人開発での実装経験に基づいています。</p>
+  </div>
 </section>
+
+<style>
+  section {
+    align-items: center;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .section-header {
+    position: relative;
+    margin-bottom: var(--space-md);
+  }
+
+  .section-number {
+    position: absolute;
+    top: -1rem;
+    right: -2.5rem;
+    font-family: var(--font-label);
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: var(--color-border);
+    letter-spacing: 0.1em;
+  }
+
+  .label {
+    font-family: var(--font-label);
+    font-size: 0.5625rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin-bottom: var(--space-xl);
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    text-align: left;
+  }
+
+  @media (max-width: 600px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg) var(--space-xl);
+    }
+
+    .section-number {
+      right: -1.5rem;
+    }
+  }
+
+  .skill-group h3 {
+    font-family: var(--font-label);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .skill-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-group li {
+    font-size: 1rem;
+    line-height: 2.2;
+    color: var(--color-text);
+  }
+
+  .note {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+</style>
