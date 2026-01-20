@@ -1,6 +1,110 @@
 <section id="contact" class="snap">
-	<h2>Contact</h2>
-	<p>X(Twitter)：<a href="https://x.com/naru_dev">https://x.com/naru_dev</a></p>
-	<p>GitHub：<a href="https://github.com/naru_dev">https://github.com/naru_dev</a></p>
-	<p>Email：<a href="mailto:narudev4@gmail.com">narudev4@gmail.com</a></p>
+  <div class="content-container">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <p class="label">Contact</p>
+    </div>
+    <h2>お問い合わせ</h2>
+
+    <div class="contact-list">
+      <a href="https://x.com/naru_dev" target="_blank" rel="noopener noreferrer" class="contact-item">
+        <span class="contact-label">X (Twitter)</span>
+        <span class="contact-value">@naru_dev</span>
+      </a>
+      <a href="https://github.com/narudev4" target="_blank" rel="noopener noreferrer" class="contact-item">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value">narudev4</span>
+      </a>
+      <a href="mailto:narudev4@gmail.com" class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">narudev4@gmail.com</span>
+      </a>
+    </div>
+  </div>
 </section>
+
+<style>
+  section {
+    align-items: center;
+  }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .section-header {
+    position: relative;
+    margin-bottom: var(--space-md);
+  }
+
+  .section-number {
+    position: absolute;
+    top: -1rem;
+    right: -2.5rem;
+    font-family: var(--font-label);
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: var(--color-border);
+    letter-spacing: 0.1em;
+  }
+
+  .label {
+    font-family: var(--font-label);
+    font-size: 0.5625rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin-bottom: var(--space-xl);
+  }
+
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-sm) var(--space-lg);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .contact-item:hover {
+    opacity: 0.6;
+  }
+
+  .contact-label {
+    font-family: var(--font-label);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .contact-value {
+    font-size: 1.25rem;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 600px) {
+    .section-number {
+      right: -1.5rem;
+    }
+  }
+</style>
